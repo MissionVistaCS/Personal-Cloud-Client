@@ -1,5 +1,7 @@
 package com.mvhs.personalcloud;
 
+import android.util.Log;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,9 +18,9 @@ public class NetworkManager
     public static final int NO_CONNECTION = 1;
     public static final int WRONG_CREDENTIALS = 2;
 
-    public static final String SESSION_COOKIE = "";
+    public static final String SESSION_COOKIE = "PHPSESSID";
 
-    private String sessionId;
+    public String sessionId;
     private String url;
 
     public NetworkManager(String url)
@@ -43,6 +45,7 @@ public class NetworkManager
         }
         catch (IOException e)
         {
+            Log.e(TAG, "Uh oh no connection", e);
             return NO_CONNECTION;
         }
 

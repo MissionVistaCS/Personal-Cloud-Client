@@ -40,12 +40,12 @@ public class LoginActivity extends AppCompatActivity
             }
         });
 
-        networkManager = new NetworkManager("http://192.168.1.2/login.php");
+        networkManager = new NetworkManager("http://192.168.1.136/login.php");
     }
 
     private void handleLogin(int code)
     {
-        Log.d(NetworkManager.TAG, "code=" + code);
+        //Log.d(NetworkManager.TAG, "code=" + code + " & sessionID=" + networkManager.sessionId);
     }
 
     private class LoginTask extends AsyncTask<String, Integer, Integer>
