@@ -54,8 +54,20 @@ public class GalleryActivity extends AppCompatActivity
                 //       Toast.LENGTH_SHORT).show();
 
                 Intent _intent = new Intent(GalleryActivity.this, FullScreenImage.class);
-                _intent.putExtra("imageLocation", files[position].getAbsolutePath());
+                _intent.putExtra("imageLocation", LoginActivity.imageManager.customImages.get(position).getImagePath());
                 startActivity(_intent);
+            }
+        });
+
+        findViewById(R.id.reload).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                GalleryActivity.this.loadImages();
+                LoginActivity.imageManager.startCrap(GalleryActivity.this);
+
+                Log.d(NetworkManager.TAG, "Loaded all these dank images");
             }
         });
 

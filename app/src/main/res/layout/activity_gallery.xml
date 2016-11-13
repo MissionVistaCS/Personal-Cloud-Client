@@ -51,4 +51,13 @@
         android:layout_alignParentTop="true"
         android:layout_toStartOf="@+id/viewgallery" />
 
+    <Button
+        android:text="Reload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reload"
+        android:layout_below="@+id/settings"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="395dp"/>
+
 </RelativeLayout>

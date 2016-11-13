@@ -125,8 +125,6 @@ public class ImageManager
         {
             new DownloadImage().execute(id);
         }
-
-
     }
 
     public void startCrap(Activity a)

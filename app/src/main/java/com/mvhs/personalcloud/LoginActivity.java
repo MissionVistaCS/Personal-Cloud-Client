@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity
         imageManager = new ImageManager();
 
         ImageManager.IMG_PATH = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES).getAbsolutePath() + "/personalcloud2/";
+                Environment.DIRECTORY_PICTURES).getAbsolutePath() + "/personalcloud4/";
 
         File f = new File(ImageManager.IMG_PATH);
         if (!f.exists()) f.mkdir();
