@@ -16,6 +16,7 @@ import android.widget.EditText;
 public class LoginActivity extends AppCompatActivity
 {
     public static NetworkManager networkManager;
+    public static ImageManager imageManager;
 
     private EditText email;
     private EditText password;
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity
         });
 
         networkManager = new NetworkManager("http://192.168.1.136/login.php");
+        imageManager = new ImageManager();
     }
 
     private void handleLogin(int code)
