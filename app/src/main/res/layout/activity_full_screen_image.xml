@@ -17,8 +17,8 @@
         app:srcCompat="@drawable/ic_menu_camera"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="135dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:id="@+id/full_screen_image" />
 </RelativeLayout>
 

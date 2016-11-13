@@ -34,24 +34,15 @@ public class GalleryActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        ArrayList<File> foundFiles = new ArrayList<>();
         File defaultImageDirectory = new File(ImageManager.IMG_PATH);
         final File[] files = defaultImageDirectory.listFiles();
 
+        LoginActivity.imageManager.startCrap(this);
 
-        for (File CurFile : files)
-        {
-            if (CurFile.getName().toLowerCase().endsWith("jpg") || CurFile.getName().toLowerCase().endsWith("png") ||
-                    CurFile.getName().toLowerCase().endsWith("gif") || CurFile.getName().toLowerCase().endsWith("jpeg"))
-            {
-                foundFiles.add(CurFile);
-                Log.d("onCreate", "Found file: " + CurFile.toString());
-            }
-        }
+        loadImages();
 
         GridView gridview = (GridView) findViewById(R.id.imageGridView);
-        imageAdapter = new ImageAdapter(this, foundFiles);
-        gridview.setAdapter(imageAdapter);
+
         Log.d("onCreate", "Set adapter");
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -104,6 +95,26 @@ public class GalleryActivity extends AppCompatActivity
                 startActivity(i);
             }
         });
+    }
+
+    public void loadImages()
+    {
+        ArrayList<File> foundFiles = new ArrayList<>();
+
+        for (CustomImage image : LoginActivity.imageManager.customImages)
+        {
+            File CurFile = new File(image.getImagePath());
+            if (CurFile.exists() && (CurFile.getName().toLowerCase().endsWith("jpg") || CurFile.getName().toLowerCase().endsWith("png") ||
+                    CurFile.getName().toLowerCase().endsWith("gif") || CurFile.getName().toLowerCase().endsWith("jpeg")))
+            {
+                foundFiles.add(CurFile);
+                Log.d("PersonalCloud: onCreate", "Found file: " + CurFile.toString());
+            }
+        }
+
+        GridView gridview = (GridView) findViewById(R.id.imageGridView);
+        imageAdapter = new ImageAdapter(this, foundFiles);
+        gridview.setAdapter(imageAdapter);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class FullScreenImage extends AppCompatActivity {
             Log.d("FullScreenImage", path);
             path = path.substring(1);
             Log.d("FullScreenImage", path);
-            File image = new File(path, path.substring(path.lastIndexOf("/")+1));
+            //File image = new File(path, path.substring(path.lastIndexOf("/")+1));
 //            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
 //            Bitmap bitmap = BitmapFactory.decodeFile(path,bmOptions);
 //            bitmap = Bitmap.createScaledBitmap(bitmap,bitmap.getWidth(),bitmap.getHeight(),true);

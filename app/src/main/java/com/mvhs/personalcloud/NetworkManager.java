@@ -30,7 +30,7 @@ public class NetworkManager
     public static final String SESSION_COOKIE = "PHPSESSID";
 
     public String sessionId;
-    private String url;
+    public String url;
 
     public NetworkManager(String url)
     {
@@ -88,6 +88,21 @@ public class NetworkManager
         {
             Log.e(TAG, "Uh oh another error", e);
             return new long[]{-1, UPLOAD_ERROR};
+        }
+    }
+
+    public String getIdsFromServer(String extension)
+    {
+        try
+        {
+            Document d = Jsoup.connect(url + extension).cookie(SESSION_COOKIE, sessionId).get();
+            Log.d(TAG, d.body().text());
+            return d.body().text();
+        }
+        catch (IOException e)
+        {
+            Log.e(TAG, "Uh oh another error", e);
+            return null;
         }
     }
 }
