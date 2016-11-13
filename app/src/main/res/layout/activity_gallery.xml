@@ -10,28 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mvhs.personalcloud.GalleryActivity">
 
-    <Button
-        android:text="View Gallery"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/viewgallery" />
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/upload"
-        android:text="Upload"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_toRightOf="@id/viewgallery"
-        android:id="@+id/settings"
-        android:text="Settings"/>
 
     <GridView
         android:layout_width="match_parent"
@@ -45,5 +23,32 @@
         android:stretchMode="columnWidth"
         android:gravity="center"
         android:layout_below="@+id/viewgallery" />
+
+    <Button
+        android:text="View Gallery"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewgallery"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/settings"
+        android:text="Settings"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/viewgallery" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/upload"
+        android:text="Upload"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/viewgallery" />
 
 </RelativeLayout>
