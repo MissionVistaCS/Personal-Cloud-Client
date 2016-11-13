@@ -45,8 +45,7 @@ public class ImageAdapter extends BaseAdapter
     }
 
     // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
+    public View getView(int position, View convertView, ViewGroup parent) {
         //Convert files.get(position) into imageView, then return it
         ImageView imageView;
         imageView = new ImageView(mContext);
@@ -58,5 +57,6 @@ public class ImageAdapter extends BaseAdapter
         imageView.setImageBitmap(ImageManager.decodeFile(files.get(position)));
         return imageView;
     }
+
 }
 

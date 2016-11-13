@@ -1,5 +1,6 @@
 package com.mvhs.personalcloud;
 
+import android.media.Image;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -9,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -63,7 +65,8 @@ public class Storage
         }
         catch (IOException e)
         {
-            Log.e(NetworkManager.TAG, "Oh no an error has popped up you ape", e);
+            Log.e(NetworkManager.TAG, "Oh no an error has popped up kiddo", e);
         }
     }
+
 }

@@ -13,6 +13,8 @@ public class CustomImage
     private String localPath;
     private Date date;
 
+
+
     public CustomImage(long _id, String _localPath, Date _date)
     {
         id = _id;

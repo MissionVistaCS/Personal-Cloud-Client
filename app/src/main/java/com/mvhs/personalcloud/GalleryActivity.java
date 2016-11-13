@@ -2,6 +2,9 @@ package com.mvhs.personalcloud;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +13,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -31,7 +36,7 @@ public class GalleryActivity extends AppCompatActivity
 
         ArrayList<File> foundFiles = new ArrayList<>();
         File defaultImageDirectory = new File(ImageManager.IMG_PATH);
-        File[] files = defaultImageDirectory.listFiles();
+        final File[] files = defaultImageDirectory.listFiles();
 
 
         for (File CurFile : files)
@@ -54,8 +59,12 @@ public class GalleryActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id)
             {
-                Toast.makeText(GalleryActivity.this, "" + position,
-                        Toast.LENGTH_SHORT).show();
+               // Toast.makeText(GalleryActivity.this, "" + position,
+                //       Toast.LENGTH_SHORT).show();
+
+                Intent _intent = new Intent(GalleryActivity.this, FullScreenImage.class);
+                _intent.putExtra("imageLocation", files[position].getAbsolutePath());
+                startActivity(_intent);
             }
         });
 
@@ -79,6 +88,18 @@ public class GalleryActivity extends AppCompatActivity
             public void onClick(View view) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
+
+                startActivity(i);
+            }
+        });
+
+        ((Button) findViewById(R.id.settings)).setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(GalleryActivity.this,SettingsActivity.class);
+
 
                 startActivity(i);
             }
