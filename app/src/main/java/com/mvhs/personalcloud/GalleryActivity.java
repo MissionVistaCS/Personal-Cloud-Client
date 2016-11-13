@@ -69,6 +69,20 @@ public class GalleryActivity extends AppCompatActivity
                 startActivityForResult(photoPickerIntent, 1);
             }
         });
+
+
+
+        ((Button) findViewById(R.id.viewgallery)).setOnClickListener(new View.OnClickListener() {
+
+            String url = "http://ryank3egan.ftp.sh:8080/login_ui.php";
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+
+                startActivity(i);
+            }
+        });
     }
 
     @Override

@@ -11,15 +11,24 @@
     tools:context="com.mvhs.personalcloud.GalleryActivity">
 
     <Button
+        android:text="View Gallery"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/viewgallery" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
         android:id="@+id/upload"
         android:text="Upload"/>
 
     <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:id="@+id/imageGridView"
         android:columnWidth="90dp"
@@ -28,6 +37,6 @@
         android:horizontalSpacing="1dp"
         android:stretchMode="columnWidth"
         android:gravity="center"
-        android:layout_below="@id/upload"/>
+        android:layout_below="@+id/viewgallery" />
 
 </RelativeLayout>
