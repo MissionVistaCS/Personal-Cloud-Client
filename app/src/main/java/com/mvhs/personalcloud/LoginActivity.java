@@ -1,5 +1,6 @@
 package com.mvhs.personalcloud;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -41,13 +42,22 @@ public class LoginActivity extends AppCompatActivity
             }
         });
 
-        networkManager = new NetworkManager("http://192.168.1.136/login.php");
+        networkManager = new NetworkManager("http://ryank3egan.ftp.sh:8080/");
         imageManager = new ImageManager();
     }
 
     private void handleLogin(int code)
     {
-        //Log.d(NetworkManager.TAG, "code=" + code + " & sessionID=" + networkManager.sessionId);
+        if (code == 0)
+        {
+            Intent i = new Intent(this, UploadActivity.class);
+            startActivity(i);
+            Log.d(NetworkManager.TAG, "code=" + code + " & sessionID=" + networkManager.sessionId);
+        }
+        else
+        {
+            Log.d(NetworkManager.TAG, "code=" + code + " & sessionID=" + networkManager.sessionId);
+        }
     }
 
     private class LoginTask extends AsyncTask<String, Integer, Integer>
@@ -56,7 +66,7 @@ public class LoginActivity extends AppCompatActivity
         @Override
         protected Integer doInBackground(String... strings)
         {
-            return networkManager.login(strings[0], strings[1]);
+            return networkManager.login(strings[0], strings[1], "login.php");
         }
 
         @Override

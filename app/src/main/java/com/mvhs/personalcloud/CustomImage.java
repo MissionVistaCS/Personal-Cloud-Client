@@ -9,18 +9,18 @@ import java.util.Date;
 public class CustomImage
 {
 
-    private int id;
+    private long id;
     private String localPath;
     private Date date;
 
-    public CustomImage(int _id, String _localPath, Date _date)
+    public CustomImage(long _id, String _localPath, Date _date)
     {
         id = _id;
         localPath = _localPath;
         date = _date;
     }
 
-    public int getImageId()
+    public long getImageId()
     {
         return(id);
     }
@@ -33,4 +33,18 @@ public class CustomImage
         return(date);
     }
 
+    public void setId(long id)
+    {
+        this.id = id;
+    }
+
+    public void setLocalPath(String localPath)
+    {
+        this.localPath = localPath;
+    }
+
+    public void setDate(Date date)
+    {
+        this.date = date;
+    }
 }
