@@ -1,6 +1,7 @@
 package com.mvhs.personalcloud;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
@@ -49,11 +50,12 @@ public class ImageAdapter extends BaseAdapter
         //Convert files.get(position) into imageView, then return it
         ImageView imageView;
         imageView = new ImageView(mContext);
-        imageView.setLayoutParams(new GridView.LayoutParams(350, 350));
+        imageView.setLayoutParams(new GridView.LayoutParams(250, 250));
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageView.setPadding(10, 10, 10, 10);
-        Log.d("getView","Formatted image: " + imageView.toString());
-        imageView.setImageURI(Uri.fromFile(files.get(position)));
+        Log.d("getView", "Formatted image: " + imageView.toString());
+        //imageView.setImageURI(Uri.fromFile(files.get(position)));
+        imageView.setImageBitmap(ImageManager.decodeFile(files.get(position)));
         return imageView;
     }
 }

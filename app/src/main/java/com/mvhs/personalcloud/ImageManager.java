@@ -1,7 +1,10 @@
 package com.mvhs.personalcloud;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
@@ -9,6 +12,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
@@ -23,21 +27,26 @@ import java.util.List;
 
 public class ImageManager
 {
+    public static String IMG_PATH = "";
+
     public List<CustomImage> customImages = new ArrayList<>();
+
+    private Activity activity;
 
     public ImageManager()
     {
 
     }
 
-    public void uploadFile(String path)
+    public void uploadFile(String path, Activity activity)
     {
+        this.activity = activity;
         new UploadImageTask().execute(path);
     }
 
     public void onFileUploaded(CustomImage img)
     {
-        Log.d(NetworkManager.TAG, "File uploaded with code=" + img.getImageDate().toString());
+        //Log.d(NetworkManager.TAG, "File uploaded with code=" + img.getImageDate().toString());
 
         if (img != null)
         {
@@ -45,18 +54,24 @@ public class ImageManager
 
             try
             {
-                copyFile(f, new File(""));
+                copyFile(f, new File(ImageManager.IMG_PATH + f.getName()));
             }
             catch (IOException e)
             {
                 e.printStackTrace();
             }
 
-            img.setLocalPath(new File(f.getName()).getAbsolutePath());
+            img.setLocalPath(new File(ImageManager.IMG_PATH + f.getName()).getAbsolutePath());
 
-            Log.d(NetworkManager.TAG, new File(f.getName()).getAbsolutePath());
+            Log.d(NetworkManager.TAG, ImageManager.IMG_PATH);
+            Log.d(NetworkManager.TAG, ImageManager.IMG_PATH + f.getName());
+            Log.d(NetworkManager.TAG, img.getImagePath());
 
             customImages.add(img);
+
+            //((GalleryActivity) activity).imageAdapter = new ImageAdapter(activity, customImages)
+            //((GalleryActivity) activity).imageAdapter.notifyDataSetChanged();
+
         } else
         {
             Log.d(NetworkManager.TAG, "A problem has occurred with image upload: You have already uploaded that image or ");
@@ -124,6 +139,39 @@ public class ImageManager
                 destination.close();
             }
         }
+
+        // sourceFile.delete();
+    }
+
+    public static Bitmap decodeFile(File f)
+    {
+        try
+        {
+            // Decode image size
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+            BitmapFactory.decodeStream(new FileInputStream(f), null, o);
+
+            // The new size we want to scale to
+            final int REQUIRED_SIZE = 70;
+
+            // Find the correct scale value. It should be the power of 2.
+            int scale = 1;
+            while (o.outWidth / scale / 2 >= REQUIRED_SIZE &&
+                    o.outHeight / scale / 2 >= REQUIRED_SIZE)
+            {
+                scale *= 2;
+            }
+
+            // Decode with inSampleSize
+            BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = scale;
+            return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+        }
+        catch (FileNotFoundException e)
+        {
+        }
+        return null;
     }
 }
 
